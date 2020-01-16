@@ -47,7 +47,7 @@ func sortByDistanceFromCentreAsc(houses [] house) []house {
 	result := make([]house, len(houses))
 	copy(result, houses)
 	sort.Slice(result, func(i, j int) bool {
-		// TODO:
+
 		return result[i].distanceFromCentre > result [j].distanceFromCentre
 	})
 	return result
@@ -57,7 +57,7 @@ func sortByDistanceFromCentreDesc(houses [] house) []house {
 	result := make([]house, len(houses))
 	copy(result, houses)
 	sort.Slice(result, func(i, j int) bool {
-		// TODO:
+
 		return result[i].distanceFromCentre < result [j].distanceFromCentre
 	})
 	return result
