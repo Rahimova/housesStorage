@@ -4,7 +4,7 @@ import "fmt"
 
 var (
 	houses []house = []house{
-		{id: 1,
+		{   id:                    1,
 			title:              "Дом1",
 			price:              500_000,
 			numberOfRooms:      5,
@@ -15,7 +15,7 @@ var (
 			distanceFromCentre: 150,
 		},
 
-		{id: 2,
+		{   id:                  2,
 			title:              "Дом2",
 			price:              600_000,
 			numberOfRooms:      5,
@@ -26,7 +26,7 @@ var (
 			distanceFromCentre: 50,
 		},
 
-		{id: 3,
+		{   id:                  3,
 			title:              "Дом3",
 			price:              1600_000,
 			numberOfRooms:      15,
