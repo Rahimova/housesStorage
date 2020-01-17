@@ -65,18 +65,43 @@ func ExampleSearchByLimitPrice_NoResults() {
 	//Output: []
 }
 
-func ExampleSearchByWantedPrice() {
+func ExampleSearchByLimitPrice_OneResults() {
+	fmt.Println(searchByMaxPrice(houses, 500_000))
+	//Output: [{1 Дом1 500000 5 2 {Dushanbe Shohmansur Ayni street} 24 87 150 }]
+}
+
+func ExampleSearchByWantedPriceOneResult() {
 	fmt.Println(searchByMaxAndMinPrice(houses, 2_000_000, 1_000_000))
 	//Output: [{3 Дом3 1600000 15 2 {Dushanbe Shohmansur Ayni street} 22 87 5 }]
 }
 
-func ExampleSearchByDistrict() {
+func ExampleSearchByWantedPriceNoResult() {
+	fmt.Println(searchByMaxAndMinPrice(houses, 5_000_000, 2_000_000))
+	//Output: []
+}
+
+func ExampleSearchByWantedPriceMultiResult() {
+	fmt.Println(searchByMaxAndMinPrice(houses, 600_000, 500_000))
+	//Output: [{1 Дом1 500000 5 2 {Dushanbe Shohmansur Ayni street} 24 87 150 } {2 Дом2 600000 5 2 {Dushanbe Shohmansur Ayni street} 24 87 50 }]
+}
+
+func ExampleSearchByDistrictMultiResult() {
 	fmt.Println(searchByDistrict(houses, "Shohmansur"))
 	//Output: [{1 Дом1 500000 5 2 {Dushanbe Shohmansur Ayni street} 24 87 150 } {2 Дом2 600000 5 2 {Dushanbe Shohmansur Ayni street} 24 87 50 } {3 Дом3 1600000 15 2 {Dushanbe Shohmansur Ayni street} 22 87 5 }]
 }
 
-func ExampleSearchByDistricts() {
+func ExampleSearchByDistrictNoResult() {
+	fmt.Println(searchByDistrict(houses, "Somoni"))
+	//Output: []
+}
+
+func ExampleSearchByDistrictsMultiResult() {
 	fmt.Println(searchByDistricts(houses, []string{"Shohmansur"}))
 	//Output: [{1 Дом1 500000 5 2 {Dushanbe Shohmansur Ayni street} 24 87 150 } {2 Дом2 600000 5 2 {Dushanbe Shohmansur Ayni street} 24 87 50 } {3 Дом3 1600000 15 2 {Dushanbe Shohmansur Ayni street} 22 87 5 }]
 
 }
+func ExampleSearchByDistrictsNoResult() {
+	fmt.Println(searchByDistricts(houses, []string{"Somoni"}))
+	//Output: []
+}
+
