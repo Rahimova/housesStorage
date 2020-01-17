@@ -1,7 +1,6 @@
 package main
 
 import (
-
 	"sort"
 )
 
@@ -24,43 +23,34 @@ type Location struct {
 	street   string
 }
 
-func sortByPriceAsc(houses [] house) []house {
-	result := make([]house, len(houses))
-	copy(result, houses)
-	sort.Slice(result, func(i, j int) bool {
-		// TODO:
-		return result[i].price < result [j].price
+func sortByPriceAscAndDesc(houses [] house) (resultForAsc, resultForDesc [] house) {
+	resultForAsc = make([]house, len(houses))
+	copy(resultForAsc, houses)
+	resultForDesc = make([]house, len(houses))
+	copy(resultForDesc, houses)
+	sort.Slice(resultForAsc, func(i, j int) bool {
+		return resultForAsc[i].price < resultForAsc [j].price
 	})
-	return result
+	sort.Slice(resultForDesc, func(i, j int) bool {
+		return resultForDesc[i].price > resultForDesc [j].price
+	})
+	return
 }
 
-func sortByPriceDesc(houses [] house) []house {
-	result := make([]house, len(houses))
-	copy(result, houses)
-	sort.Slice(result, func(i, j int) bool {
-		// TODO:
-		return result[i].price > result [j].price
+func sortByDistanceFromCentreAscAndDesc(houses [] house) (resultForAsc, resultForDesc []house) {
+	resultForAsc = make([]house, len(houses))
+	copy(resultForAsc, houses)
+	sort.Slice(resultForAsc, func(i, j int) bool {
+		return resultForAsc[i].distanceFromCentre > resultForAsc [j].distanceFromCentre
 	})
-	return result
-}
-func sortByDistanceFromCentreAsc(houses [] house) []house {
-	result := make([]house, len(houses))
-	copy(result, houses)
-	sort.Slice(result, func(i, j int) bool {
 
-		return result[i].distanceFromCentre > result [j].distanceFromCentre
+	resultForDesc = make([]house, len(houses))
+	copy(resultForDesc, houses)
+	sort.Slice(resultForDesc, func(i, j int) bool {
+
+		return resultForDesc[i].distanceFromCentre < resultForDesc [j].distanceFromCentre
 	})
-	return result
-}
-
-func sortByDistanceFromCentreDesc(houses [] house) []house {
-	result := make([]house, len(houses))
-	copy(result, houses)
-	sort.Slice(result, func(i, j int) bool {
-
-		return result[i].distanceFromCentre < result [j].distanceFromCentre
-	})
-	return result
+	return
 }
 
 func searchByMaxPrice(houses [] house, maxPrice int64) []house {
@@ -101,7 +91,7 @@ func searchByDistrict(houses [] house, district string) []house {
 	return result
 }
 
-func searchByDistricts(houses [] house, districts []string ) []house {
+func searchByDistricts(houses [] house, districts []string) []house {
 
 	result := make([]house, 0)
 	for _, house := range houses {
