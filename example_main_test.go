@@ -4,7 +4,7 @@ import "fmt"
 
 var (
 	houses []house = []house{
-		{id: 1,
+		{   id:                    1,
 			title:              "Дом1",
 			price:              500_000,
 			numberOfRooms:      5,
@@ -15,7 +15,7 @@ var (
 			distanceFromCentre: 150,
 		},
 
-		{id: 2,
+		{   id:                  2,
 			title:              "Дом2",
 			price:              600_000,
 			numberOfRooms:      5,
@@ -26,7 +26,7 @@ var (
 			distanceFromCentre: 50,
 		},
 
-		{id: 3,
+		{   id:                  3,
 			title:              "Дом3",
 			price:              1600_000,
 			numberOfRooms:      15,
@@ -39,49 +39,57 @@ var (
 	}
 )
 
-func ExampleSortByPriceAscAndDesc() {
-	sortByPriceAsc, sortByPriceDesc := sortByPriceAscAndDesc(houses)
+func ExampleSortByPriceAsc() {
+	sortByPriceAsc := sortByPriceAsc(houses)
 	fmt.Println(sortByPriceAsc)
-	fmt.Println(sortByPriceDesc)
 	//Output: [{1 Дом1 500000 5 2 {Dushanbe Shohmansur Ayni street} 24 87 150 } {2 Дом2 600000 5 2 {Dushanbe Shohmansur Ayni street} 24 87 50 } {3 Дом3 1600000 15 2 {Dushanbe Shohmansur Ayni street} 22 87 5 }]
-	//[{3 Дом3 1600000 15 2 {Dushanbe Shohmansur Ayni street} 22 87 5 } {2 Дом2 600000 5 2 {Dushanbe Shohmansur Ayni street} 24 87 50 } {1 Дом1 500000 5 2 {Dushanbe Shohmansur Ayni street} 24 87 150 }]
+
+}
+
+func ExampleSortByPriceDesc() {
+	sortByPriceDesc := sortByPriceDesc(houses)
+	fmt.Println(sortByPriceDesc)
+	//Output: [{3 Дом3 1600000 15 2 {Dushanbe Shohmansur Ayni street} 22 87 5 } {2 Дом2 600000 5 2 {Dushanbe Shohmansur Ayni street} 24 87 50 } {1 Дом1 500000 5 2 {Dushanbe Shohmansur Ayni street} 24 87 150 }]
 }
 
 func ExampleSortByDistanceFromCentreAsc() {
-	sortByDistanceFromCentreAsc, sortByDistanceFromCentreDesc := sortByDistanceFromCentreAscAndDesc(houses)
+	sortByDistanceFromCentreAsc := sortByDistanceFromCentreAsc(houses)
 	fmt.Println(sortByDistanceFromCentreAsc)
-	fmt.Println(sortByDistanceFromCentreDesc)
-	//Output: [{1 Дом1 500000 5 2 {Dushanbe Shohmansur Ayni street} 24 87 150 } {2 Дом2 600000 5 2 {Dushanbe Shohmansur Ayni street} 24 87 50 } {3 Дом3 1600000 15 2 {Dushanbe Shohmansur Ayni street} 22 87 5 }]
-	//[{3 Дом3 1600000 15 2 {Dushanbe Shohmansur Ayni street} 22 87 5 } {2 Дом2 600000 5 2 {Dushanbe Shohmansur Ayni street} 24 87 50 } {1 Дом1 500000 5 2 {Dushanbe Shohmansur Ayni street} 24 87 150 }]
+	//Output: [{3 Дом3 1600000 15 2 {Dushanbe Shohmansur Ayni street} 22 87 5 } {2 Дом2 600000 5 2 {Dushanbe Shohmansur Ayni street} 24 87 50 } {1 Дом1 500000 5 2 {Dushanbe Shohmansur Ayni street} 24 87 150 }]
 }
 
-func ExampleSearchByLimitPrice_MultipleResults() {
+func ExampleSortByDistanceFromCentreDesc() {
+	sortByDistanceFromCentreDesc := sortByDistanceFromCentreDesc(houses)
+	fmt.Println(sortByDistanceFromCentreDesc)
+	//Output: [{1 Дом1 500000 5 2 {Dushanbe Shohmansur Ayni street} 24 87 150 } {2 Дом2 600000 5 2 {Dushanbe Shohmansur Ayni street} 24 87 50 } {3 Дом3 1600000 15 2 {Dushanbe Shohmansur Ayni street} 22 87 5 }]
+}
+func ExampleSearchByMaxPrice_MultipleResults() {
 	fmt.Println(searchByMaxPrice(houses, 1_000_000))
 	//Output: [{1 Дом1 500000 5 2 {Dushanbe Shohmansur Ayni street} 24 87 150 } {2 Дом2 600000 5 2 {Dushanbe Shohmansur Ayni street} 24 87 50 }]
 }
 
-func ExampleSearchByLimitPrice_NoResults() {
+func ExampleSearchByMaxPrice_NoResults() {
 	fmt.Println(searchByMaxPrice(houses, 1_000))
 	//Output: []
 }
 
-func ExampleSearchByLimitPrice_OneResults() {
+func ExampleSearchByMaxPrice_OneResults() {
 	fmt.Println(searchByMaxPrice(houses, 500_000))
 	//Output: [{1 Дом1 500000 5 2 {Dushanbe Shohmansur Ayni street} 24 87 150 }]
 }
 
 func ExampleSearchByWantedPriceOneResult() {
-	fmt.Println(searchByMaxAndMinPrice(houses, 2_000_000, 1_000_000))
+	fmt.Println(searchByMaxPriceAndMinPrice(houses, 2_000_000, 1_000_000))
 	//Output: [{3 Дом3 1600000 15 2 {Dushanbe Shohmansur Ayni street} 22 87 5 }]
 }
 
 func ExampleSearchByWantedPriceNoResult() {
-	fmt.Println(searchByMaxAndMinPrice(houses, 5_000_000, 2_000_000))
+	fmt.Println(searchByMaxPriceAndMinPrice(houses, 5_000_000, 2_000_000))
 	//Output: []
 }
 
 func ExampleSearchByWantedPriceMultiResult() {
-	fmt.Println(searchByMaxAndMinPrice(houses, 600_000, 500_000))
+	fmt.Println(searchByMaxPrice(houses, 600_000))
 	//Output: [{1 Дом1 500000 5 2 {Dushanbe Shohmansur Ayni street} 24 87 150 } {2 Дом2 600000 5 2 {Dushanbe Shohmansur Ayni street} 24 87 50 }]
 }
 
@@ -104,4 +112,3 @@ func ExampleSearchByDistrictsNoResult() {
 	fmt.Println(searchByDistricts(houses, []string{"Somoni"}))
 	//Output: []
 }
-
